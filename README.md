@@ -71,8 +71,8 @@ This will:
 
 ## Notes
 
-- Raw and cleaned data are **not included** in the repository to protect sensitive information.  
-- File paths are managed in `config.py` and should be adjusted if cloning on a new machine.  
+- Raw and cleaned data are **not included** in the repository to protect the output.  
+- File paths are managed in `config.py` and should be adjusted if cloning on a new computer.  
 
 ---
 
