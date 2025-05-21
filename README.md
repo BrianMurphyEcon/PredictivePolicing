@@ -5,7 +5,7 @@ The following code transforms raw police department data into a cleaned, Stata r
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 <pre>
 Predictive Policing Team/
@@ -24,10 +24,69 @@ Predictive Policing Team/
 
 ---
 
-## 🚀 How to Run
+## How to Run
 
 ### 1. Clone this repository
 
 ```bash
 git clone https://github.com/yourusername/predictive-policing-pipeline.git
 cd predictive-policing-pipeline/Code
+```
+
+## 2. Set up your environment
+
+This project requires:
+
+- Python 3.9+
+- `pandas`, `numpy`
+
+### If using Anaconda:
+
+```bash
+conda install pandas numpy
+```
+
+```bash
+pip install pandas numpy
+```
+## 3.Run 
+```bash
+python master.py
+```
+This will:
+
+- Load the raw CSV file  
+- Clean and standardize column names  
+- Remove non-ASCII characters  
+- Export the cleaned dataset as a Stata `.dta` file  
+
+---
+
+## What It Does
+
+- Drops junk columns (e.g., `Unnamed: 0`)  
+- Replaces problematic characters for Stata compatibility  
+- Renames columns to `snake_case`  
+- Fixes long strings and encodes text safely  
+- Outputs in Stata version 117 format (supports long strings)  
+
+---
+
+## Notes
+
+- Raw and cleaned data are **not included** in the repository to protect sensitive information.  
+- File paths are managed in `config.py` and should be adjusted if cloning on a new machine.  
+
+---
+
+## Contributors
+
+- Brian Murphy (Lead)  
+- Hallie, Zane, Khushi, David (Research Assistants)
+
+---
+
+## 📄 License
+
+This project is private and intended for academic research use only.
+
