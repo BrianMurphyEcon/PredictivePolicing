@@ -1,4 +1,4 @@
-# Predictive Policing Data Pipeline
+# Predictive Policing Project
 
 This project is a attempting to answer how police departments use predictive policing technology. 
 The following code transforms raw police department data into a cleaned, Stata ready dataset.
