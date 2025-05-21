@@ -55,10 +55,9 @@ python master.py
 ```
 This will:
 
-- Load the raw CSV file  
-- Clean and standardize column names  
-- Remove non-ASCII characters  
-- Export the cleaned dataset as a Stata `.dta` file  
+- Load the raw CSV file
+- Clean and standardize column names
+- Export the cleaned dataset as a Stata `.dta` file
 
 ---
 
@@ -66,9 +65,7 @@ This will:
 
 - Drops junk columns (e.g., `Unnamed: 0`)  
 - Replaces problematic characters for Stata compatibility  
-- Renames columns to `snake_case`  
-- Fixes long strings and encodes text safely  
-- Outputs in Stata version 117 format (supports long strings)  
+... and More!
 
 ---
 
