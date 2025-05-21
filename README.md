@@ -83,7 +83,7 @@ This will:
 
 ---
 
-## 📄 License
+## License
 
 This project is private and intended for academic research use only.
 
