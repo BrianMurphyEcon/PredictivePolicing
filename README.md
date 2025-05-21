@@ -29,8 +29,8 @@ Predictive Policing Team/
 ### 1. Clone this repository
 
 ```bash
-git clone https://github.com/yourusername/predictive-policing-pipeline.git
-cd predictive-policing-pipeline/Code
+git clone https://github.com/yourusername/PredictivePolicing.git
+cd PredictivePolicing/Code
 ```
 
 ## 2. Set up your environment
