@@ -29,7 +29,7 @@ Predictive Policing Team/
 ### 1. Clone this repository
 
 ```bash
-git clone https://github.com/yourusername/PredictivePolicing.git
+git clone https://github.com/BrianMurphyEcon/PredictivePolicing.git
 cd PredictivePolicing/Code
 ```
 
