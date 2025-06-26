@@ -1,7 +1,9 @@
+# %%
 import numpy as np
 import pandas as pd
 import re
 
+# %% 
 def clean_data(df):
     df = df.loc[:, ~df.columns.str.lower().str.startswith("unnamed")]
 
@@ -17,6 +19,7 @@ def clean_data(df):
     ]
     df = df.loc[:, df.columns != ""]
 
+# %% 
     for col in df.select_dtypes(include='object').columns:
         df[col] = df[col].astype(str).str.encode('ascii', errors='replace').str.decode('ascii')
 
@@ -30,13 +33,13 @@ def clean_data(df):
             return pd.to_datetime(date_str, errors='coerce', dayfirst=False)
         except:
             return pd.NaT
-
+# %% 
     df['contact_dates'] = df.get('dates_contacted', '').apply(extract_dates)
     df['contact_dates'] = df['contact_dates'].apply(lambda dates: sorted([parse_date(d) for d in dates if parse_date(d) is not pd.NaT]))
 
     df['heard_back_dates'] = df.get('hear_back_date', '').apply(extract_dates)
     df['heard_back_dates'] = df['heard_back_dates'].apply(lambda dates: sorted([parse_date(d) for d in dates if parse_date(d) is not pd.NaT]))
-
+# %% 
     # Create individual contacted and response columns
     for i in range(3):
         df[f'date_contacted{i+1}'] = df['contact_dates'].apply(lambda x: x[i] if len(x) > i else pd.NaT)
@@ -64,7 +67,7 @@ def clean_data(df):
         )
 
         df[f'response_days{i+1}'] = (df[response_col] - df[contact_col]).dt.days
-
+# %% 
     # Add No_Email, No_Phone, No_Contact, Submitted_FOIA flags
     df['no_email'] = df.get('contact_methods', '').str.contains(r'\bno\s*email\b', case=False, na=True)
     df['no_phone'] = df.get('contact_methods', '').str.contains(r'\bno\s*(call|phone)\b', case=False, na=True)
@@ -73,7 +76,7 @@ def clean_data(df):
         df.get('dates_contacted', '').str.contains(r'\bfoia\b', case=False, na=True)
     )
 
-
+# %% 
     df['no_contact'] = df.get('contact_methods', '').isna() | (df['contact_methods'].str.strip() == "")
 
     # Count number of attempts before first response

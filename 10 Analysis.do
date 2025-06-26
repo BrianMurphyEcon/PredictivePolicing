@@ -43,13 +43,18 @@ replace Predictive = 1 if inlist(use_pred_pol, ///
     "Hybrid", "Hybrid (see note)", ///
     "No? hybrid?")
 	
-gen num_contact = ///
-    (datecontact1 != "") + ///
-    (datecontact2 != "") + ///
-    (datecontact3 != "") + ///
-    (datecontact4 != "") + ///
-    (datecontact5 != "")
-
 gen log_pop = log(Population1)
 
-reghdfe violent_crimes log_pop num_contact Predictive, absorb(State AgencyType) vce(cluster State)
+drop if no_contact == 1
+
+egen days_wait = rowtotal(response_days1 response_days2 response_days3)
+replace days_wait = . if never_heard_back ==1
+
+encode State, gen(state_id)
+encode AgencyType, gen(agencytype_id)
+
+reghdfe violent_crimes_percap Predictive attempts_before_response no_email days_wait, absorb(state_id#agencytype_id) vce(cluster State)
+reghdfe crime_percap Predictive attempts_before_response no_email days_wait, absorb(state_id#agencytype_id) vce(cluster State)
+
+reghdfe violent_crimes_percap log_pop Predictive never_heard_back no_email, absorb(state_id#agencytype_id) vce(cluster State)
+reghdfe crime_percap log_pop Predictive never_heard_back no_email, absorb(state_id#agencytype_id) vce(cluster State)
