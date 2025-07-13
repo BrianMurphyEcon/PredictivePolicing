@@ -1,10 +1,24 @@
+"""
+Description: This code cleans the data by extracting dates and features specific to the data collected.
+
+Output: 'df' -> a cleaned dataframe that will be transformed into a Stata .dta file.
+
+Written by: Brian Murphy
+"""
+
 # %%
 import numpy as np
 import pandas as pd
 import re
+#import logging
+
+#logging.basicConfig(level=logging.INFO)
+#logger = logging.getLogger(__name__)
+
 
 # %% 
 def clean_data(df):
+
     df = df.loc[:, ~df.columns.str.lower().str.startswith("unnamed")]
 
     df.columns = [
@@ -18,6 +32,7 @@ def clean_data(df):
         for col in df.columns
     ]
     df = df.loc[:, df.columns != ""]
+
 
 # %% 
     for col in df.select_dtypes(include='object').columns:
